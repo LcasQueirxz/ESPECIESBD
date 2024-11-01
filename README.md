@@ -24,33 +24,45 @@ Para rodar este projeto, você precisará de:
      USE nome_do_seu_banco_de_dados;
      ```
 
-## 📝 Script SQL
+## 📝 Script select SQL
 
 Execute o seguinte script SQL no MySQL Workbench para criar a tabela `especies` e inserir os dados:
 
-```sql
-DROP TABLE IF EXISTS especies;
+## 🐶 Atualiza o nome do animal de 'Pateta' para 'Goofy'
+UPDATE animals a SET a.nome = 'Goofy' WHERE a.nome LIKE 'Pateta';
 
-CREATE TABLE especies (
-  id INT NOT NULL AUTO_INCREMENT,
-  nome VARCHAR(100) DEFAULT NULL,
-  raca VARCHAR(100) DEFAULT NULL,
-  cor VARCHAR(20) DEFAULT NULL,
-  peso DECIMAL(10,2) DEFAULT NULL,
-  dataNascimento DATE DEFAULT NULL,
-  PRIMARY KEY (id)
-);
+## 🐱 Altera o peso do Garfield para 10 kilogramas
+UPDATE animals a SET a.Peso = 10 WHERE a.nome LIKE 'Garfield';
 
-INSERT INTO especies (nome, raca, cor, peso, dataNascimento) VALUES
-    ('Groofy', 'Cachorro', 'preto', 40.50, '2020-01-01'),
-    ('boot', 'Cachorro', 'cinza', 29.30, '2019-02-15'),
-    ('scobby', 'Cachorro', 'branco e preto', 37.40, '2018-03-20'),
-    ('toto', 'Cachorro', 'preto', 17.10, '2017-04-25'),
-    ('bolinha', 'Gato', 'marrom', 27.50, '2016-05-30'),
-    ('cacau', 'Gato', 'preto', 36.30, '2015-06-10'),
-    ('princesa', 'Gato', 'amarelo', 35.50, '2014-07-15'),
-    ('jorginho', 'Cachorro', 'marrom', 25.40, '2013-08-20'),
-    ('bolota', 'Cachorro', 'preto', 40.20, '2012-09-25'),
-    ('caju', 'Gato', 'bege', 10.30, '2011-10-30'),
-    ('caramelo', 'Gato', 'caramelo', 25.50, '2010-11-05'),
-    ('Garfield', 'Gato', 'laranja', 10.30, '2009-12-10');
+## 🐈 Altera a cor de todos os gatos para laranja
+UPDATE animals a SET a.cor = 'laranja' WHERE a.raca LIKE 'Gato';
+
+## 📏 Cria um campo altura para os animais
+ALTER TABLE animals ADD COLUMN altura DECIMAL;
+
+## 📝 Cria um campo observação para os animais
+ALTER TABLE animals ADD COLUMN observacao VARCHAR(120);
+
+## ⚖️ Remove todos os animais que pesam mais que 200 kilogramas
+DELETE FROM animals a WHERE a.Peso > 200;
+
+## 🔤 Remove todos os animais que o nome inicie com a letra 'C'
+DELETE FROM animals a WHERE a.nome LIKE 'C%';
+
+## 🎨 Remove o campo cor dos animais
+ALTER TABLE animals DROP COLUMN cor;
+
+## 📛 Aumenta o tamanho do campo nome dos animais para 80 caracteres
+ALTER TABLE animals MODIFY COLUMN nome VARCHAR(80);
+
+## 🐾 Remove todos os gatos e cachorros
+DELETE FROM animals a WHERE a.raca LIKE 'Gato' OR a.raca LIKE 'Cachorro';
+
+## 🎂 Remove o campo data de nascimento dos animais
+ALTER TABLE animals DROP COLUMN dataNascimento;
+
+## 🐕 Remove todos os animais
+DELETE FROM animals a;
+
+## 🗑️ Remove a tabela especies
+DROP TABLE animals;
